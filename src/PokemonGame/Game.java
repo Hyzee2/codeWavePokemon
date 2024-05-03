@@ -13,6 +13,10 @@ public interface Game {
 	
 	public void battle();
 	
+	public void print(int myHp, int wildHp);
+	
+	public void hpReset(String myPokemonName);
+	
 
 	
 

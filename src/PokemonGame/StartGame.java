@@ -104,7 +104,7 @@ public class StartGame implements Game {
 	public void battle() {
 		// TODO Auto-generated method stub
 		WildPokemon wildpokemon = makeWild();
-		int[] hp= {20, 40, 60};
+		
 		// 우리 포켓몬이 공격한다
 		while(wildpokemon.getHp()>0 || myPokemon.getHp()>0) {
 			System.out.println("==================================");
@@ -116,43 +116,54 @@ public class StartGame implements Game {
 			}
 			Scanner select = new Scanner(System.in);
 			int attack = myPokemon.attack(select.next());
+			
+			
 			wildpokemon.attacked(attack);
-			System.out.println("==================================");
-			System.out.println("나의 포켓몬 hp : "+myPokemon.getHp());
-			System.out.println("야생 포켓몬 hp : "+wildpokemon.getHp());
-			System.out.println("==================================");
+			print(myPokemon.getHp(),wildpokemon.getHp());
 			if(wildpokemon.getHp()<=0 || myPokemon.getHp()<=0) {
-				if(myPokemon.getName().equals("pichu")) {
-					myPokemon.setHp(hp[0]);
-				}else if(myPokemon.getName().equals("pikachu")) {
-					myPokemon.setHp(hp[1]);
-				}else {
-					myPokemon.setHp(hp[2]);
-				}
+				hpReset(myPokemon.getName());
 				break;
 			}
 			
 			int wildAttack = wildpokemon.attack();
 			myPokemon.attacked(wildAttack);
-			System.out.println("==================================");
-			System.out.println("나의 포켓몬 hp : "+myPokemon.getHp());
-			System.out.println("야생 포켓몬 hp : "+wildpokemon.getHp());
-			System.out.println("==================================");
+			
+			
+			print(myPokemon.getHp(),wildpokemon.getHp());
 			if(wildpokemon.getHp()<=0 || myPokemon.getHp()<=0) {
-				if(myPokemon.getName().equals("pichu")) {
-					myPokemon.setHp(hp[0]);
-				}else if(myPokemon.getName().equals("pikachu")) {
-					myPokemon.setHp(hp[1]);
-				}else {
-					myPokemon.setHp(hp[2]);
-				}
+				hpReset(myPokemon.getName());
 				break;
 			}
 		}
+		
+		
 		if(wildpokemon.getHp()<=0) {
 			dictionary(wildpokemon.getName());
 			myPokemon.setExp(myPokemon.getExp()+10);
 			levelup(myPokemon.getExp());
+		}
+	}
+
+	@Override
+	public void print(int myHp, int wildHp) {
+		// TODO Auto-generated method stub
+		System.out.println("==================================");
+		System.out.println("나의 포켓몬 hp : "+ myHp);
+		System.out.println("야생 포켓몬 hp : "+wildHp);
+		System.out.println("==================================");
+		
+	}
+
+	@Override
+	public void hpReset(String myPokemonName) {
+		// TODO Auto-generated method stub
+		int[] hp= {20, 40, 60};
+		if(myPokemonName.equals("pichu")) {
+			myPokemon.setHp(hp[0]);
+		}else if(myPokemonName.equals("pikachu")) {
+			myPokemon.setHp(hp[1]);
+		}else {
+			myPokemon.setHp(hp[2]);
 		}
 	}
 
