@@ -61,11 +61,6 @@ class Pichu extends Pokemon {
 		skills.put("10만볼트", 10);
 		skills.put("발차기", 5);
 	}
-
-
-	
-
-
 }
 
 class Pikachu extends Pichu {
@@ -77,7 +72,6 @@ class Pikachu extends Pichu {
 		skills.put("100만볼트", 20);
 		skills.put("슈퍼발차기", 10);
 	}
-	
 }
 
 class Laichu extends Pikachu {
